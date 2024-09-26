@@ -1,7 +1,17 @@
-<?php 
+<?php
 
+/**
+ * Class EntryListTable
+ *
+ * A custom WordPress table to display user entries.
+ */
 class EntryListTable extends WP_List_Table {
 
+    /**
+     * Constructor
+     *
+     * @since 1.0.0
+     */
     public function __construct() {
         global $status, $page;
         parent::__construct(array(
@@ -11,6 +21,15 @@ class EntryListTable extends WP_List_Table {
     
     }
 
+    /**
+     * Get default column values
+     *
+     * @since 1.0.0
+     *
+     * @param array $item Item row
+     * @param string $column_name Column name
+     * @return string
+     */
     public function column_default($item, $column_name) {
         switch($column_name){
           case 'action': echo '<a href="'.admin_url('admin.php?page=new-entry&entryid='.$item['id']).'">Edit</a>';
@@ -18,15 +37,38 @@ class EntryListTable extends WP_List_Table {
         return @$item[$column_name];
     }
 
+    /**
+     * Get column feedback name
+     *
+     * @since 1.0.0
+     *
+     * @param array $item Item row
+     * @return string
+     */
     public function column_feedback_name($item) {
       $actions = array( 'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id']) );
       return sprintf('%s %s', $item['id'], $this->row_actions($actions) );
     }
 
+    /**
+     * Get column checkbox
+     *
+     * @since 1.0.0
+     *
+     * @param array $item Item row
+     * @return string
+     */
     public function column_cb($item) {
       return sprintf( '<input type="checkbox" name="id[]" value="%s" />', $item['id'] );
     }
 
+    /**
+     * Get table columns
+     *
+     * @since 1.0.0
+     *
+     * @return array
+     */
     public function get_columns() {
         $columns = array(
             'cb'            => '<input type="checkbox" />',
@@ -37,6 +79,13 @@ class EntryListTable extends WP_List_Table {
       return $columns;
     }
 
+    /**
+     * Get sortable columns
+     *
+     * @since 1.0.0
+     *
+     * @return array
+     */
     public function get_sortable_columns() {
       $sortable_columns = array(
         'name' => array('name', true)
@@ -44,11 +93,23 @@ class EntryListTable extends WP_List_Table {
       return $sortable_columns;
     }
 
+    /**
+     * Get bulk actions
+     *
+     * @since 1.0.0
+     *
+     * @return array
+     */
     public function get_bulk_actions() {
       $actions = array( 'delete' => 'Delete' );
       return $actions;
     }
 
+    /**
+     * Process bulk action
+     *
+     * @since 1.0.0
+     */
     public function process_bulk_action() {
       global $wpdb;
       $table_name = "wp_crud";
@@ -61,6 +122,11 @@ class EntryListTable extends WP_List_Table {
         }
     }
 
+    /**
+     * Prepare items
+     *
+     * @since 1.0.0
+     */
     public function prepare_items() {
         global $wpdb,$current_user;
 

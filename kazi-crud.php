@@ -1,26 +1,41 @@
 <?php
-/*
-Plugin Name: Kazi CRUD
-Plugin URI: https://wordpress.org/plugins/kazi-crud
-Description: Kazi CRUD ( Create, Read, Update & Delete ) Application Using Ajax & WP List Table
-Requires at least: 5.2
-Requires PHP: 7.2
-Author: Kazi Rabiul Islam
-Author URI: https://wordpress.org/plugins/kazi-crud
-Version: 1.0.1
-textdomain: kazi-crud
-*/
+/**
+ * Plugin Name: Kazi CRUD
+ * Plugin URI: https://wordpress.org/plugins/kazi-crud
+ * Description: Kazi CRUD ( Create, Read, Update & Delete ) Application Using Ajax & WP List Table
+ * Requires at least: 5.2
+ * Requires PHP: 7.2
+ * Author: Kazi Rabiul Islam
+ * Author URI: https://wordpress.org/plugins/kazi-crud
+ * Version: 1.0.1
+ * textdomain: kazi-crud
+ */
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
   exit;
 }
 
+/**
+ * Class KaziCRUD
+ */
 class KaziCRUD {
 
+  /**
+   * The table name for the plugin
+   * @var string
+   */
   private $table_name;
+
+  /**
+   * The database version
+   * @var string
+   */
   private $dbv = '1.3';
 
+  /**
+   * Constructor
+   */
   public function __construct() {
   
     global $wpdb;
@@ -52,6 +67,9 @@ class KaziCRUD {
   }
   
 
+  /**
+   * Activate the plugin
+   */
   function activate_crud_plugin_function() {
     global $wpdb;
     $charset_collate = $wpdb->get_charset_collate();
@@ -70,12 +88,18 @@ class KaziCRUD {
     dbDelta( $sql );
   }
 
+  /**
+   * Deactivate the plugin
+   */
   function deactivate() {
     global $wpdb;
     $sql = "DROP TABLE IF EXISTS $this->table_name";
     $wpdb->query($sql);
   }
 
+  /**
+   * Load custom css and js
+   */
   public function load_custom_css_js() {
     wp_register_style( 'my_custom_css', KAZI_CRUD_URL.'/css/style.css', false, '1.0.0' );
     wp_enqueue_style( 'my_custom_css' );
@@ -86,6 +110,9 @@ class KaziCRUD {
   
   
 
+  /**
+   * Create the menu pages
+   */
   public function my_menu_pages() {
     add_menu_page( 
         __( 'KAZI_CRUD', 'kazi-crud' ),
@@ -105,10 +132,16 @@ class KaziCRUD {
         [$this, 'my_menu_output'] );
 }
 
+  /**
+   * Output the new entry page
+   */
   public function my_menu_output() {
     require_once(KAZI_CRUD_PATH.'/admin-templates/new_entry.php');
   }
 
+  /**
+   * Output the view entries page
+   */
   public function my_submenu_output() {
     global $wpdb;
     $table = new EntryListTable();
