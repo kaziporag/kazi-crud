@@ -10,13 +10,13 @@ if(isset($_REQUEST['entryid']) && $_REQUEST['entryid']!='') {
         <input type="hidden" name="wqentryid" id="wqentryid" value="<?=$_REQUEST['entryid']?>" />
         <div class="wqlabel"><?php echo esc_attr( 'Your Name', 'kazi-crud' ) ?></div>
         <div class="wqfield">
-          <input type="text" class="wqtextfield" name="kc_name" id="kc_name" placeholder="Enter Your Title" value="<?=$data->name?>" />
+          <input type="text" class="wqtextfield" name="kc_name" id="kc_name" placeholder="Enter Your Name" value="<?=$data->name?>" />
         </div>
         <div id="kc_name_message" class="wqmessage"></div>
         <div>&nbsp;</div>
         <div class="wqlabel"><?php echo esc_attr( 'Your Email Address', 'kazi-crud' ) ?></div>
         <div class="wqfield">
-        <input type="email" class="wqtextfield" name="kc_email" id="kc_email" placeholder="Enter Your Title" value="<?=$data->email?>" />
+        <input type="email" class="wqtextfield" name="kc_email" id="kc_email" placeholder="Enter Your Email" value="<?=$data->email?>" />
         </div>
         <div id="kc_email_message" class="wqmessage"></div>
         <div>&nbsp;</div>
@@ -41,7 +41,7 @@ if(isset($_REQUEST['entryid']) && $_REQUEST['entryid']!='') {
       <div>&nbsp;</div>
       <div class="wqlabel"><?php echo esc_attr( 'Your Email Address', 'kazi-crud' ) ?></div>
       <div class="wqfield">
-      <input type="email" class="wqtextfield" name="kc_email" id="kc_email" placeholder="Enter Your Email Address" value="" />
+      <input type="email" class="wqtextfield" name="kc_email" id="kc_email" placeholder="Enter Your Email" value="" />
       </div>
       <div id="kc_email_message" class="wqmessage"></div>
       <div>&nbsp;</div>

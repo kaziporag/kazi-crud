@@ -6,16 +6,16 @@ jQuery(document).ready(function(){
     $('.wqsubmit_message').html('');
 
     var kc_name = $('#kc_name').val();
-    var wqdescription = $('#wqdescription').val();
+    var kc_email = $('#kc_email').val();
 
     if(kc_name=='') {
-      $('#kc_name_message').html('Title is Required');
+      $('#kc_name_message').html('Name is Required');
     }
-    if(wqdescription=='') {
-      $('#wqdescription_message').html('Description is Required');
+    if(kc_email=='') {
+      $('#kc_email_message').html('Email is Required');
     }
 
-    if(kc_name!='' && wqdescription!='') {
+    if(kc_name!='' && kc_email!='') {
       var fd = new FormData(this);
       var action = 'wqnew_entry';
       fd.append("action", action);
@@ -49,16 +49,16 @@ jQuery(document).ready(function(){
     $('.wqsubmit_message').html('');
 
     var kc_name = $('#kc_name').val();
-    var wqdescription = $('#wqdescription').val();
+    var kc_email = $('#kc_email').val();
 
     if(kc_name=='') {
-      $('#kc_name_message').html('Title is Required');
+      $('#kc_name_message').html('Name is Required');
     }
-    if(wqdescription=='') {
-      $('#wqdescription_message').html('Description is Required');
+    if(kc_email=='') {
+      $('#kc_email_message').html('Email is Required');
     }
 
-    if(kc_name!='' && wqdescription!='') {
+    if(kc_name!='' && kc_email!='') {
       var fd = new FormData(this);
       var action = 'wqedit_entry';
       fd.append("action", action);
