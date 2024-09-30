@@ -22,18 +22,6 @@ if (!defined('ABSPATH')) {
 class KaziCRUD {
 
   /**
-   * The table name for the plugin
-   * @var string
-   */
-  private $table_name;
-
-  /**
-   * The database version
-   * @var string
-   */
-  private $dbv = '1.3';
-
-  /**
    * Constructor
    */
   public function __construct() {
@@ -50,11 +38,6 @@ class KaziCRUD {
     add_action( 'admin_enqueue_scripts', [ $this, 'load_custom_css_js' ] );
     add_action('admin_menu', [ $this, 'my_menu_pages' ]);
 
-    $dbv = get_option('dbv');
-    if ($dbv != $this->dbv) {
-        $this->create_database_tables();
-        update_option('dbv', $this->dbv);
-    }
 
     require_once(KAZI_CRUD_PATH.'/ajax/ajax_action.php');
 
